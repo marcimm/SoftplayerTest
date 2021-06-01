@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31229.75
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0B46A216-6EF1-4653-8917-3220F66B3BE0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{895CB73C-E000-4BC3-83E2-5581D6EB41B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TaxaJuros", "TaxaJuros", "{31691773-8B6E-4576-82A2-6FFD666261C5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMM.Test.TaxaJuros.Api", "src\Services\TaxaJuros\MMM.Test.TaxaJuros\MMM.Test.TaxaJuros.Api.csproj", "{D11D5FE5-13D5-4395-8D85-EB5D82D66095}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3715C2AD-2B35-4E23-B6EC-2FCB659F4329}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMM.Test.TaxaJuros.Services", "src\Services\TaxaJuros\MMM.Test.TaxaJuros.Services\MMM.Test.TaxaJuros.Services.csproj", "{3BAACD05-6BF5-455B-A246-634A05E5F751}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D11D5FE5-13D5-4395-8D85-EB5D82D66095}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D11D5FE5-13D5-4395-8D85-EB5D82D66095}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D11D5FE5-13D5-4395-8D85-EB5D82D66095}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D11D5FE5-13D5-4395-8D85-EB5D82D66095}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BAACD05-6BF5-455B-A246-634A05E5F751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BAACD05-6BF5-455B-A246-634A05E5F751}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BAACD05-6BF5-455B-A246-634A05E5F751}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BAACD05-6BF5-455B-A246-634A05E5F751}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{895CB73C-E000-4BC3-83E2-5581D6EB41B5} = {0B46A216-6EF1-4653-8917-3220F66B3BE0}
+		{31691773-8B6E-4576-82A2-6FFD666261C5} = {895CB73C-E000-4BC3-83E2-5581D6EB41B5}
+		{D11D5FE5-13D5-4395-8D85-EB5D82D66095} = {31691773-8B6E-4576-82A2-6FFD666261C5}
+		{3BAACD05-6BF5-455B-A246-634A05E5F751} = {31691773-8B6E-4576-82A2-6FFD666261C5}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {71FD52D3-EAF1-4A3C-AF57-CF8614C90874}
+	EndGlobalSection
+EndGlobal
