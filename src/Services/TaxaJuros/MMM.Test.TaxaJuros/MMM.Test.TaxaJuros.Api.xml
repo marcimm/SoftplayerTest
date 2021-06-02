@@ -6,7 +6,7 @@
     <members>
         <member name="M:MMM.Test.TaxaJuros.Controllers.TaxaJurosController.GetTaxaJuros">
             <summary>
-            Retorna taxa de juros
+            Retorna taxa de juros atual
             </summary>
         </member>
     </members>

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "MMM.Teste.CalculoJuros.Domain": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

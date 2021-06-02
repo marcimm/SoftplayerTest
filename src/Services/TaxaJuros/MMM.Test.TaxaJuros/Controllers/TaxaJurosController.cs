@@ -4,7 +4,9 @@ using MMM.Test.TaxaJuros.Services;
 namespace MMM.Test.TaxaJuros.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[action]/")]
+    [Produces("application/json")]
+    [Consumes("application/json")]
     public class TaxaJurosController : Controller
     {
         private readonly ITaxaJurosService _taxaJurosService;
@@ -15,10 +17,10 @@ namespace MMM.Test.TaxaJuros.Controllers
         }
 
         /// <summary>
-        /// Retorna taxa de juros
+        /// Retorna taxa de juros atual
         /// </summary>
         [HttpGet]
-        [ActionName("get")]
+        [ActionName("taxaJuros")]
         public ActionResult<float> GetTaxaJuros()
         {
             return _taxaJurosService.GetTaxaJurosValor();

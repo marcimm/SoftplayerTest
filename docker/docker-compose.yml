@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+
+  api-01-taxa-juros:
+    image: mcr.microsoft.com/dotnet/runtime-deps:5.0.203-alpine3.13
+    build:
+      context: ../src
+      dockerfile: ./Services/TaxaJuros/MMM.Test.TaxaJuros/Dockerfile
+    ports:
+      - "5001:5001"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:5001
+
+  api-02-calculo-juros:
+    image: mcr.microsoft.com/dotnet/runtime-deps:5.0.203-alpine3.13
+    build:
+      context: ../src
+      dockerfile: ./Services/CalculoJuros/MMM.Teste.CalculoJuros.Api/Dockerfile
+    ports:
+      - "6001:6001"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:6001

@@ -7,16 +7,18 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["src/Services/TaxaJuros/MMM.Test.TaxaJuros/MMM.Test.TaxaJuros.csproj", "src/Services/TaxaJuros/MMM.Test.TaxaJuros/"]
-RUN dotnet restore "src/Services/TaxaJuros/MMM.Test.TaxaJuros/MMM.Test.TaxaJuros.csproj"
+COPY ["./Services/TaxaJuros/MMM.Test.TaxaJuros/MMM.Test.TaxaJuros.Api.csproj", "Services/TaxaJuros/MMM.Test.TaxaJuros/"]
+COPY ["./Services/TaxaJuros/MMM.Test.TaxaJuros.Services/MMM.Test.TaxaJuros.Services.csproj", "Services/TaxaJuros/MMM.Test.TaxaJuros.Services/"]
+
+RUN dotnet restore "Services/TaxaJuros/MMM.Test.TaxaJuros/MMM.Test.TaxaJuros.Api.csproj"
 COPY . .
-WORKDIR "/src/src/Services/TaxaJuros/MMM.Test.TaxaJuros"
-RUN dotnet build "MMM.Test.TaxaJuros.csproj" -c Release -o /app/build
+WORKDIR "Services/TaxaJuros/MMM.Test.TaxaJuros"
+RUN dotnet build "MMM.Test.TaxaJuros.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "MMM.Test.TaxaJuros.csproj" -c Release -o /app/publish
+RUN dotnet publish "MMM.Test.TaxaJuros.Api.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "MMM.Test.TaxaJuros.dll"]
+ENTRYPOINT ["dotnet", "MMM.Test.TaxaJuros.Api.dll"]
