@@ -8,9 +8,9 @@ services:
       context: ../src
       dockerfile: ./Services/TaxaJuros/MMM.Test.TaxaJuros/Dockerfile
     ports:
-      - "5001:5001"
+      - "5100:5100"
     environment:
-      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:5001
 
   api-02-calculo-juros:
@@ -21,5 +21,5 @@ services:
     ports:
       - "6001:6001"
     environment:
-      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:6001

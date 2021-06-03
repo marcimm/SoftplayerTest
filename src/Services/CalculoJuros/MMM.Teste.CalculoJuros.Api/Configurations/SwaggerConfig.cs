@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerUI;
 using System;
 using System.IO;
 using System.Reflection;
@@ -17,13 +19,27 @@ namespace MMM.Teste.CalculoJuros.Api.Configurations
             {
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "Márcio Molina Morassutti - Teste API",
-                    Description = "Api de teste",
-                    Version = "1.0.0",
+                    Title = "Márcio MM - API 2",
+                    Description = "Api de teste - Calcula Juros",
+                    Version = "1.0",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Márcio Molina Morassutti",
+                        Email = "marcio.molina.m@gmail.com"
+                    }
                 });
 
-                options.DocInclusionPredicate((docName, description) => true);
-                options.EnableAnnotations();
+                options.SwaggerDoc("v2", new OpenApiInfo
+                {
+                    Title = "Márcio MM - API 2",
+                    Description = "Api de teste - Calcula Juros",
+                    Version = "2.0",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Márcio Molina Morassutti",
+                        Email = "marcio.molina.m@gmail.com"
+                    }
+                });
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -34,15 +50,19 @@ namespace MMM.Teste.CalculoJuros.Api.Configurations
             return services;
         }
 
-        public static IApplicationBuilder UseSwaggerConfig(this IApplicationBuilder app)
+        public static IApplicationBuilder UseSwaggerConfig(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)
         {
-            app.UseSwaggerUI(setupAction =>
-            {
-                setupAction.SwaggerEndpoint("/swagger/v1/swagger.json", "Márcio Molina Morassutti - Teste API");
-                setupAction.RoutePrefix = "";
-            });
-
             app.UseSwagger();
+
+            app.UseSwaggerUI(options =>
+            {
+                foreach (var description in provider.ApiVersionDescriptions)
+                {
+                    options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+                    options.RoutePrefix = String.Empty;
+                }
+                options.DocExpansion(DocExpansion.List);
+            });
 
             return app;
         }

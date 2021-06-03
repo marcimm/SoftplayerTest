@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MMM.Teste.CalculoJuros.Api.Configurations
 {
@@ -6,11 +7,12 @@ namespace MMM.Teste.CalculoJuros.Api.Configurations
     {
         public static IServiceCollection AddApiVersioningConfig(this IServiceCollection services)
         {
-            services.AddApiVersioning(o =>
+            services.AddApiVersioning(options =>
             {
-                o.ReportApiVersions = true;
-                o.AssumeDefaultVersionWhenUnspecified = true;
-                o.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+                options.ReportApiVersions = true;
+                options.AssumeDefaultVersionWhenUnspecified = true;
+                options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+                options.ApiVersionReader = new UrlSegmentApiVersionReader();
             });
 
             services.AddVersionedApiExplorer(options =>

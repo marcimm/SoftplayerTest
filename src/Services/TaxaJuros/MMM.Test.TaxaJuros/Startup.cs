@@ -53,7 +53,7 @@ namespace MMM.Test.TaxaJuros
             app.UseSwaggerUI(c => 
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "MMM.Test.TaxaJuros v1"));
 
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
             app.UseRouting();
 
