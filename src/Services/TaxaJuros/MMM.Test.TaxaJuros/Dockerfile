@@ -8,8 +8,6 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["./Services/TaxaJuros/MMM.Test.TaxaJuros/MMM.Test.TaxaJuros.Api.csproj", "Services/TaxaJuros/MMM.Test.TaxaJuros/"]
-COPY ["./Services/TaxaJuros/MMM.Test.TaxaJuros.Services/MMM.Test.TaxaJuros.Services.csproj", "Services/TaxaJuros/MMM.Test.TaxaJuros.Services/"]
-
 RUN dotnet restore "Services/TaxaJuros/MMM.Test.TaxaJuros/MMM.Test.TaxaJuros.Api.csproj"
 COPY . .
 WORKDIR "Services/TaxaJuros/MMM.Test.TaxaJuros"

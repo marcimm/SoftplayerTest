@@ -10,25 +10,16 @@ namespace MMM.Teste.CalculoJuros.Api
     {
         public static void Main(string[] args)
         {
-            // Serilog configuration using appsettings
-            IConfigurationRoot configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .Build();
-
-            Log.Logger = new LoggerConfiguration()
-                .ReadFrom.Configuration(configuration, sectionName: "Serilog")
-                .CreateLogger();
-
-            CreateHostBuilder(args).Build().Run();
+            Microsoft.AspNetCore.WebHost.CreateDefaultBuilder(args)
+           .UseSerilog()
+           .ConfigureAppConfiguration(config =>
+           {
+               IConfigurationRoot cfg = config.Build();
+               Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(cfg, "Serilog").CreateLogger();
+           })
+           .UseStartup<Startup>()
+           .Build()
+           .Run();
         }
-
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .UseSerilog()
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
     }
 }

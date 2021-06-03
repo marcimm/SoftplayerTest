@@ -1,5 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MMM.Test.Core.Models;
+using MMM.Test.Core.Notifications;
 using MMM.Teste.CalculoJuros.Api.Controllers;
+using MMM.Teste.CalculoJuros.Application.Services;
+using System.Threading.Tasks;
 
 namespace MMM.Test.Juros.Controllers.V2
 {
@@ -9,9 +13,12 @@ namespace MMM.Test.Juros.Controllers.V2
     public class JurosController : BaseController
     {
 
-        public JurosController()
-        {
+        private readonly ICalculoJurossService _calculoJurossService;
 
+        public JurosController(ICalculoJurossService calculoJurossService, INotifier notifier)
+            : base(notifier)
+        {
+            _calculoJurossService = calculoJurossService;
         }
 
         /// <summary>
@@ -19,9 +26,14 @@ namespace MMM.Test.Juros.Controllers.V2
         /// </summary>
         [HttpGet]
         [Route("calculajuros")]
-        public ActionResult<float> GetTaxaJuros()
+        [ProducesResponseType(200, Type = typeof(ApiResponse<double>))]
+        [ProducesResponseType(500, Type = typeof(ApiResponse<ErrorDetails>))]        
+        public async Task<ActionResult<double>> GetTaxaJuros([FromQuery] decimal capitalAplicado,
+            [FromQuery] int tempoMeses)
         {
-            return 2;
+            var response = await _calculoJurossService.CalcularJuros(capitalAplicado, tempoMeses);
+
+            return response;
         }
     }
 }

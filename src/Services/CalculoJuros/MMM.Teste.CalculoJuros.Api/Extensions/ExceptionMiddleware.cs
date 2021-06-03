@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using MMM.Test.Core.Models;
+using Newtonsoft.Json;
+using Polly.CircuitBreaker;
 using System;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace MMM.Teste.CalculoJuros.Api.Extensions
@@ -26,21 +28,47 @@ namespace MMM.Teste.CalculoJuros.Api.Extensions
             {
                 await _next(httpContext);
             }
+            catch (BrokenCircuitException ex)
+            {
+                string info = "Circuit Breaker Policy Exception captured.";
+                await HandleExceptionAsync(httpContext, ex, info);
+            }
             catch (Exception ex)
             {
-                await HandleExceptionAsync(httpContext, ex);
+                await HandleExceptionAsync(httpContext, ex, "Unespected error! Exception not handled!");
             }
         }
 
-        private async Task HandleExceptionAsync(HttpContext context, Exception exception)
+        private Task HandleExceptionAsync(HttpContext context, Exception exception, string additionalInformation)
         {
             _logger.LogError(exception, $"{exception.GetType().Name} captured.");
-            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
+            context.Response.StatusCode = context.Response.StatusCode;
+
+            ApiResponse<ErrorDetails> apiResponse = new ApiResponse<ErrorDetails>
+            {
+                Success = false,
+                Response = GetErrorDetails(exception, additionalInformation)
+            };
+
+            string result = JsonConvert.SerializeObject(apiResponse);
             context.Response.ContentType = "application/json";
 
-            await context.Response.WriteAsync(exception.Message);
+            return context.Response.WriteAsync(result);
         }
 
+        private ErrorDetails GetErrorDetails(Exception exception, string additionalInformation)
+        {
+            ErrorDetails error = new ErrorDetails
+            {
+                AdditionalInformation = additionalInformation,
+                ExceptionType = exception.GetType().FullName,
+                Message = exception.Message,
+                Source = exception.Source,
+                TimeStamp = DateTime.Now
+            };
+
+            return error;
+        }
     }
 }

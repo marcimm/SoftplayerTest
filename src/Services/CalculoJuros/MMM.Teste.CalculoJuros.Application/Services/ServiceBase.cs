@@ -1,4 +1,7 @@
-﻿using MMM.Teste.CalculoJuros.Application.Extensions;
+﻿using FluentValidation;
+using FluentValidation.Results;
+using MMM.Test.Core.Notifications;
+using MMM.Teste.CalculoJuros.Application.Extensions;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -7,6 +10,39 @@ namespace MMM.Teste.CalculoJuros.Application.Services
 {
     public abstract class ServiceBase
     {
+        private readonly INotifier _notifier;
+
+        protected ServiceBase(INotifier notifier)
+        {
+            _notifier = notifier;
+        }
+
+        protected bool ValidateProperties<TV, TE>(TV validation, TE entity)
+         where TV : AbstractValidator<TE> where TE : class
+        {
+            var validationResult = validation.Validate(entity);
+
+            if (validationResult.IsValid)
+                return true;
+
+            Notify(validationResult);
+
+            return false;
+        }
+
+        protected void Notify(ValidationResult validationResult)
+        {
+            foreach (var error in validationResult.Errors)
+            {
+                Notify(new Notification(error.ErrorMessage, NotificationType.ERROR));
+            }
+        }
+
+        protected void Notify(Notification notification)
+        {
+            _notifier.Handle(notification);
+        }
+
         protected async Task<T> DeserializarObjetoResponse<T>(HttpResponseMessage responseMessage)
         {
             var options = new JsonSerializerOptions
@@ -19,16 +55,12 @@ namespace MMM.Teste.CalculoJuros.Application.Services
 
         protected bool TratarErrosResponse(HttpResponseMessage response)
         {
-            switch ((int)response.StatusCode)
-            {
-                case 401:
-                case 403:
-                case 404:
-                case 500:
-                    throw new CustomHttpRequestException(response.StatusCode);
+            int statusCode = (int)response.StatusCode;
 
-                case 400:
-                    return false;
+            if ((statusCode < 200) || (statusCode > 208)) //[200, 208] = HTTP OK
+            {
+                _notifier.Handle(new Notification("Serviço de taxa de juros indisponível", NotificationType.ERROR));
+                throw new CustomHttpRequestException(response.StatusCode);
             }
 
             response.EnsureSuccessStatusCode();

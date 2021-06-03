@@ -21,12 +21,13 @@ namespace MMM.Teste.CalculoJuros.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddApiVersioningConfig(); 
+            services.AddApiVersioningConfig();
             services.AddControllers();
             services.AddHttpClient();
             services.AddSwaggerConfig();
             services.AddGzipCompressionConfig(Configuration);
             services.AddDependencyInjection();
+            services.AddHealthChecksConfig(Configuration);
 
             services.Configure<AppSettings>(Configuration);
         }
@@ -55,7 +56,9 @@ namespace MMM.Teste.CalculoJuros.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-            });            
+            });
+
+            app.UseHealthChecksConfig();
         }
     }
 }

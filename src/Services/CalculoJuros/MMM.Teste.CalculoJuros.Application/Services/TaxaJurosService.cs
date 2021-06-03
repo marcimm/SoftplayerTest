@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
+using MMM.Test.Core.Notifications;
 using MMM.Teste.CalculoJuros.Models;
 using System;
 using System.Net.Http;
@@ -10,7 +11,8 @@ namespace MMM.Teste.CalculoJuros.Application.Services
     {
         private readonly HttpClient _httpClient;
 
-        public TaxaJurosService(HttpClient httpClient, IOptions<AppSettings> settings)
+        public TaxaJurosService(HttpClient httpClient, IOptions<AppSettings> settings, INotifier notifier)
+            : base(notifier)
         {
             _httpClient = httpClient;
             _httpClient.BaseAddress = new Uri(settings.Value.UrlTaxaJurosApi);

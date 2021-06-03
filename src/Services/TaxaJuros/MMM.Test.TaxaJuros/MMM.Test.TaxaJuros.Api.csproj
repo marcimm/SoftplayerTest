@@ -20,10 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MMM.Test.TaxaJuros.Services\MMM.Test.TaxaJuros.Services.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

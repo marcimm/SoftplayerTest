@@ -41,6 +41,9 @@ namespace MMM.Teste.CalculoJuros.Api.Configurations
                     }
                 });
 
+                //options.DocInclusionPredicate((docName, description) => true); // endpoints no mesmo arquivo
+
+                options.EnableAnnotations();
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 options.IncludeXmlComments(xmlPath);

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MMM.Test.TaxaJuros.Services;
+using MMM.Test.TaxaJuros.Api.Services;
 
 namespace MMM.Test.TaxaJuros.Controllers
 {

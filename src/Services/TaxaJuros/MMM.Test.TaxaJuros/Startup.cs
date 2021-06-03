@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using MMM.Test.TaxaJuros.Services;
+using MMM.Test.TaxaJuros.Api.Services;
 using System;
 using System.IO;
 using System.Reflection;
@@ -47,11 +47,15 @@ namespace MMM.Test.TaxaJuros
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
-                app.UseDeveloperExceptionPage();    
+                app.UseDeveloperExceptionPage();
 
             app.UseSwagger();
-            app.UseSwaggerUI(c => 
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MMM.Test.TaxaJuros v1"));
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MMM.Test.TaxaJuros v1");
+                c.RoutePrefix = String.Empty;
+            });
+
 
             app.UseHttpsRedirection();
 
