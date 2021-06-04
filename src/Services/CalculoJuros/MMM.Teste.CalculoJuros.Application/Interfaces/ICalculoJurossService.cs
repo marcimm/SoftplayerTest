@@ -1,9 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using MMM.Teste.CalculoJuros.Application.ViewModels;
+using System.Threading.Tasks;
 
 namespace MMM.Teste.CalculoJuros.Application.Services
 {
     public interface ICalculoJurossService
     {
-        Task<double?> CalcularJuros(decimal capitalAplicado, int tempoMeses);
+        Task<JurosCompostosViewModel> CalcularJuros(decimal valorInicial, int tempoMeses);
     }
 }

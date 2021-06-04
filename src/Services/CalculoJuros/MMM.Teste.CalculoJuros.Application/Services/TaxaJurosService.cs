@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using AutoMapper;
+using Microsoft.Extensions.Options;
 using MMM.Test.Core.Notifications;
 using MMM.Teste.CalculoJuros.Models;
 using System;
@@ -11,20 +12,20 @@ namespace MMM.Teste.CalculoJuros.Application.Services
     {
         private readonly HttpClient _httpClient;
 
-        public TaxaJurosService(HttpClient httpClient, IOptions<AppSettings> settings, INotifier notifier)
-            : base(notifier)
+        public TaxaJurosService(HttpClient httpClient, IOptions<AppSettings> settings, INotifier notifier, IMapper mapper)
+            : base(notifier,  mapper)
         {
             _httpClient = httpClient;
             _httpClient.BaseAddress = new Uri(settings.Value.UrlTaxaJurosApi);
         }
 
-        public async Task<double?> GetTaxaJuros()
+        public async Task<decimal?> GetTaxaJuros()
         {
             HttpResponseMessage response = await _httpClient.GetAsync("/taxaJuros");
 
             TratarErrosResponse(response);
 
-            return await DeserializarObjetoResponse<double>(response);
+            return await DeserializarObjetoResponse<decimal>(response);
         }
     }
 }

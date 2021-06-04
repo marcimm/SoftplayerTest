@@ -4,6 +4,6 @@ namespace MMM.Teste.CalculoJuros.Application.Services
 {
     public interface ITaxaJurosService
     {
-        Task<double?> GetTaxaJuros();
+        Task<decimal?> GetTaxaJuros();
     }
 }

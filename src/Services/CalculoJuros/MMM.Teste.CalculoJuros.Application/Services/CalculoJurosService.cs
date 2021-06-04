@@ -1,4 +1,6 @@
-﻿using MMM.Test.Core.Notifications;
+﻿using AutoMapper;
+using MMM.Test.Core.Notifications;
+using MMM.Teste.CalculoJuros.Application.ViewModels;
 using MMM.Teste.CalculoJuros.Models;
 using MMM.Teste.CalculoJuros.Validations;
 using System.Threading.Tasks;
@@ -9,23 +11,22 @@ namespace MMM.Teste.CalculoJuros.Application.Services
     {
         private readonly ITaxaJurosService _taxaJurosService;
 
-        public CalculoJurosService(ITaxaJurosService taxaJurosService, INotifier notifier)
-            : base(notifier)
+        public CalculoJurosService(ITaxaJurosService taxaJurosService, INotifier notifier, IMapper mapper)
+            : base(notifier, mapper)
         {
             _taxaJurosService = taxaJurosService;
         }
 
-        public async Task<double?> CalcularJuros(decimal capitalAplicado, int tempoMeses)
+        public async Task<JurosCompostosViewModel> CalcularJuros(decimal valorInicial, int tempoMeses)
         {
-            double? taxaJuros = await _taxaJurosService.GetTaxaJuros();
+            decimal? taxaJuros = await _taxaJurosService.GetTaxaJuros();
 
-            Juros juros = new Juros(capitalAplicado, taxaJuros.Value, tempoMeses);
+            JurosCompostos juros = new JurosCompostos(valorInicial, taxaJuros.Value, tempoMeses);
 
-            if (!ValidateProperties(new JurosValidation(), juros))
+            if (!ValidateProperties(new JurosCompostosValidation(), juros))
                 return null;
-
-
-            return juros.CalcularJurosCompostos();
+     
+            return _mapper.Map<JurosCompostosViewModel>(juros);            
         }
     }
 }

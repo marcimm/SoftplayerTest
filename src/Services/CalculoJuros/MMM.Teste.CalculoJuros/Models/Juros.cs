@@ -1,25 +1,19 @@
-﻿using System;
-
-namespace MMM.Teste.CalculoJuros.Models
+﻿namespace MMM.Teste.CalculoJuros.Models
 {
-    public class Juros
+    public abstract class Juros
     {
-        public Juros(decimal capitalAplicado, double taxaJuros, int tempoMeses)
+        public Juros(decimal valorInicial, decimal taxaJuros, int tempoMeses)
         {
-            CapitalAplicado = capitalAplicado;
+            ValorInicial = valorInicial;
             TaxaJuros = taxaJuros;
             TempoMeses = tempoMeses;
         }
 
-        public decimal CapitalAplicado { get; set; }
-        public double TaxaJuros { get; set; }
+        public decimal ValorFinal { get; set; }
+        public decimal ValorInicial { get; set; }
+        public decimal TaxaJuros { get; set; }
         public int TempoMeses { get; set; }
 
-        public double CalcularJurosCompostos()
-        {
-            double jurosCompostos = double.Parse(CapitalAplicado.ToString()) * Math.Pow(1 + TaxaJuros, TempoMeses);
-
-            return jurosCompostos;
-        }
+        public abstract void CalcularJuros();
     }
 }

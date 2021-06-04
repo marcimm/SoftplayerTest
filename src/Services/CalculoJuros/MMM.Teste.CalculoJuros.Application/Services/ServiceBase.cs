@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using AutoMapper;
+using FluentValidation;
 using FluentValidation.Results;
 using MMM.Test.Core.Notifications;
 using MMM.Teste.CalculoJuros.Application.Extensions;
@@ -11,10 +12,12 @@ namespace MMM.Teste.CalculoJuros.Application.Services
     public abstract class ServiceBase
     {
         private readonly INotifier _notifier;
+        protected readonly IMapper _mapper;
 
-        protected ServiceBase(INotifier notifier)
+        protected ServiceBase(INotifier notifier, IMapper mapper)
         {
             _notifier = notifier;
+            _mapper = mapper;
         }
 
         protected bool ValidateProperties<TV, TE>(TV validation, TE entity)
