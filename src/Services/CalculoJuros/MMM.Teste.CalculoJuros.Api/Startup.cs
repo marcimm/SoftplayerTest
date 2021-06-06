@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MMM.Test.Core.Services.Identity;
 using MMM.Teste.CalculoJuros.Api.Configurations;
 using MMM.Teste.CalculoJuros.Api.Extensions;
 using MMM.Teste.CalculoJuros.Application.AutoMapper;
@@ -24,6 +25,8 @@ namespace MMM.Teste.CalculoJuros.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<AppSettings>(Configuration);
+
+            services.AddJwtConfiguration(Configuration);
 
             services.AddControllers();
             services.AddHttpClient();
@@ -55,7 +58,7 @@ namespace MMM.Teste.CalculoJuros.Api
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseGlobalizationSetup();
-            app.UseAuthorization();
+            app.UseAuthConfiguration();
             app.UseMiddleware(typeof(ExceptionMiddleware));
 
             app.UseEndpoints(endpoints =>

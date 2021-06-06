@@ -2,18 +2,32 @@ version: "3.9"
 
 services:
 
-  api-02-calculo-juros:
-    image: marciomm/softplayer-api-02-calculo-juros
-    container_name: api-02-calculo-juros
-    build:
+  sql-server:
+    image: marciomm/softplayer-sql-server
+    container_name: sql-server
+    build: 
+      context: ../sql
+      dockerfile: ./Dockerfile
+    environment:
+      SA_PASSWORD: "MyPa$$w0rd"
+      ACCEPT_EULA: "Y"     
+
+
+  api-identity:
+    image: marciomm/softplayer-api-identity
+    container_name: api-identity    
+    build: 
       context: ../src
-      dockerfile: ./Services/CalculoJuros/MMM.Teste.CalculoJuros.Api/Dockerfile
-    restart: always 
+      dockerfile: ./services/Identity/MMM.Tests.Identity.Api/Dockerfile  
+    restart: always    
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=https://+:5101;http://+5102
     ports:
-      - "5101:5101"
+      - "5001:5001"
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_URLS=http://*:5101
+      - ASPNETCORE_URLS=http://*:5001
       
   api-01-taxa-juros:
     image: marciomm/softplayer-api-01-taxa-juros
@@ -23,9 +37,22 @@ services:
       dockerfile: ./Services/TaxaJuros/MMM.Test.TaxaJuros/Dockerfile
     restart: always 
     ports:
-      - "5001:5001"
+      - "5101:5101"
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_URLS=http://*:5001
+      - ASPNETCORE_URLS=http://*:5101
+
+  api-02-calculo-juros:
+    image: marciomm/softplayer-api-02-calculo-juros
+    container_name: api-02-calculo-juros
+    build:
+      context: ../src
+      dockerfile: ./Services/CalculoJuros/MMM.Teste.CalculoJuros.Api/Dockerfile
+    restart: always 
+    ports:
+      - "5201:5201"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://*:5201
 
 

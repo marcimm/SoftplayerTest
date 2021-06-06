@@ -23,9 +23,10 @@ namespace MMM.Teste.CalculoJuros.Application.Services
         {
             HttpResponseMessage response = await _httpClient.GetAsync("/taxaJuros");
 
-            TratarErrosResponse(response);
+            if (TratarErrosResponse(response))
+                return await DeserializarObjetoResponse<decimal?>(response);
 
-            return await DeserializarObjetoResponse<decimal>(response);
+            return null;
         }
     }
 }

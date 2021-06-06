@@ -25,8 +25,11 @@ namespace MMM.Teste.CalculoJuros.Application.Services
 
             if (!ValidateProperties(new JurosCompostosValidation(), juros))
                 return null;
-     
-            return _mapper.Map<JurosCompostosViewModel>(juros);            
+
+            JurosCompostosViewModel result = _mapper.Map<JurosCompostosViewModel>(juros);
+
+            return result;
+
         }
     }
 }

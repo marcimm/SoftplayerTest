@@ -63,7 +63,8 @@ namespace MMM.Teste.CalculoJuros.Application.Services
             if ((statusCode < 200) || (statusCode > 208)) //[200, 208] = HTTP OK
             {
                 _notifier.Handle(new Notification("Serviço de taxa de juros indisponível", NotificationType.ERROR));
-                throw new CustomHttpRequestException(response.StatusCode);
+                return false;
+                // throw new CustomHttpRequestException("Serviço de taxa de juros indisponível");
             }
 
             response.EnsureSuccessStatusCode();

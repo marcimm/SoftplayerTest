@@ -34,6 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\MMM.Test.Core.Services\MMM.Test.Core.Services.csproj" />
     <ProjectReference Include="..\MMM.Teste.CalculoJuros.Application\MMM.Teste.CalculoJuros.Application.csproj" />
   </ItemGroup>
 

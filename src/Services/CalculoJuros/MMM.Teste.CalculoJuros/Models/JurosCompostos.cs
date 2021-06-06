@@ -10,6 +10,7 @@ namespace MMM.Teste.CalculoJuros.Models
             CalcularJuros();
         }
 
+
         public override void CalcularJuros()
         {
             decimal jurosCompostos = ValorInicial * (decimal)Math.Pow(1.0 + (double)TaxaJuros, TempoMeses);
