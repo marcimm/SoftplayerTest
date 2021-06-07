@@ -15,7 +15,7 @@ Utilização de SOLID e Clean Code além de inúmeras tecnologias e recursos pro
 * Api de gerenciamento de usuários e acessos com Identity e EF Core
 * Customização de autorização com CLAIMS
 * Serilog
-* Notification Patern
+* Notification Pattern
 * View Model Pattern
 * Retry Pattern e Circuit Breaker com Polly
 * FluentValitation
