@@ -1,3 +1,5 @@
+[![.NET](https://github.com/marcimm/SoftplayerTest/actions/workflows/build_dotnet.yml/badge.svg)](https://github.com/marcimm/SoftplayerTest/actions/workflows/build_dotnet.yml)
+
 # SoftplayerTest - App demostração
 
 ## Descrição
