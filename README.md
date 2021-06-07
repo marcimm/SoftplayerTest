@@ -27,7 +27,7 @@ Utilização de SOLID e Clean Code além de inúmeras tecnologias e recursos pro
  
 **Diagrama:** 
 
-![Alt text](docs/im/drawIO_diagram.PNG?raw=true "Diagrama")
+![Alt text](docs/img/drawIO_diagram.PNG?raw=true "Diagrama")
 
 **Resumo:** 
 
