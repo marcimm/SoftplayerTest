@@ -42,7 +42,7 @@ namespace MMM.Test.Juros.Controllers.V1
         [ProducesResponseType(500, Type = typeof(ApiResponse<ErrorDetails>))]
         public ActionResult<string> GetGitHubUrl()
         {               
-            return CustomResponse("Url Projeto: https://github.com/marcimm");
+            return CustomResponse("Url Projeto: https://github.com/marcimm/SoftplayerTest");
         }
     }
 }

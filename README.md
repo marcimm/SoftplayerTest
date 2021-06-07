@@ -52,7 +52,7 @@ Todos os containers estão configurados com portas de acesso externo:
 - sql-server: **localhost, 1430** (usuário: "sa", senha: "My_PassW0rd")
 
 ### Database com usuário de ADM para testes:
--- Ao subir o container sql-server, será criada automaticamente utilizando p arquivo: /sql/database-generator.sql
--- No startup da api-identity também será criada a database com ADM caso ainda não exista:
+- Ao subir o container sql-server, será criada automaticamente utilizando p arquivo: /sql/database-generator.sql
+- No startup da api-identity também será criada a database com ADM caso ainda não exista:
 "email": "adm@adm.com"
 "senha": "Adm@12345"
