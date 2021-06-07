@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace MMM.Tests.Identity.Api.Controllers
 {
-    [Route("api/identidade")]
+    [Route("")]
     public class AuthController : MainController
     {
         private readonly SignInManager<IdentityUser> _signInManager;
@@ -57,7 +57,7 @@ namespace MMM.Tests.Identity.Api.Controllers
             return CustomResponse();
         }
 
-        [HttpPost("autenticar")]
+        [HttpPost("token")]
         public async Task<ActionResult> Login(UsuarioLogin usuarioLogin)
         {
             if (!ModelState.IsValid) return CustomResponse(ModelState);

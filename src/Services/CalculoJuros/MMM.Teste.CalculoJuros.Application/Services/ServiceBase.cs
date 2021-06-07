@@ -2,7 +2,6 @@
 using FluentValidation;
 using FluentValidation.Results;
 using MMM.Test.Core.Notifications;
-using MMM.Teste.CalculoJuros.Application.Extensions;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -11,7 +10,7 @@ namespace MMM.Teste.CalculoJuros.Application.Services
 {
     public abstract class ServiceBase
     {
-        private readonly INotifier _notifier;
+        protected readonly INotifier _notifier;
         protected readonly IMapper _mapper;
 
         protected ServiceBase(INotifier notifier, IMapper mapper)

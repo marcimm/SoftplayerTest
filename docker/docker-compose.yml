@@ -9,8 +9,11 @@ services:
       context: ../sql
       dockerfile: ./Dockerfile
     environment:
-      SA_PASSWORD: "MyPa$$w0rd"
-      ACCEPT_EULA: "Y"     
+      SA_PASSWORD: "My_PassW0rd"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Developer #Express #Standard #Enterprise #EnterpriseCore
+    ports:
+      - "1430:1433"     
 
 
   api-identity:
@@ -28,6 +31,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=http://*:5001
+    depends_on: 
+      - sql-server
       
   api-01-taxa-juros:
     image: marciomm/softplayer-api-01-taxa-juros

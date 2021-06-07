@@ -9,6 +9,7 @@ using MMM.Test.Core.Services.Identity;
 using MMM.Tests.Identity.Api.Configurations;
 using MMM.Tests.Identity.Api.Context;
 using MMM.Tests.Identity.Api.Database;
+using System;
 
 namespace MMM.Tests.Identity.Api
 {
@@ -38,12 +39,12 @@ namespace MMM.Tests.Identity.Api
             services.AddControllers();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, 
-            ApplicationDbContext db, UserManager<IdentityUser> userManager)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext db, 
+            UserManager<IdentityUser> userManager, IServiceProvider serviceProvider)
         {
             // Testes -> Executar Migrations para atualizar DB  
             db.Database.Migrate();
-            ApplicationDbInitializer.SeedUsers(userManager);
+            ApplicationDbInitializer.SeedAdminUser(userManager, serviceProvider);
 
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();

@@ -36,9 +36,10 @@ namespace MMM.Test.Juros.Controllers.V2
         public async Task<ActionResult<JurosCompostosViewModel>> GetTaxaJuros([FromQuery] decimal valorInicial,
             [FromQuery] int tempoMeses)
         {
-            var response = await _calculoJurossService.CalcularJuros(valorInicial, tempoMeses);
-
-            return response;
+            JurosCompostosViewModel response = await _calculoJurossService.CalcularJuros(valorInicial, tempoMeses);
+            
+            //return response;
+            return CustomResponse(response);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace MMM.Test.Core.Models
         [JsonProperty("response", NullValueHandling = NullValueHandling.Ignore)]
         public T Response { get; set; }
 
-        [JsonProperty("messages", NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> Messages { get; set; }
+        [JsonProperty("notifications", NullValueHandling = NullValueHandling.Ignore)]
+        public List<string> Notifications { get; set; }
     }
 }

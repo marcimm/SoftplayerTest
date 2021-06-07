@@ -19,11 +19,11 @@ namespace MMM.Teste.CalculoJuros.Api.Controllers
             ApiResponse<object> apiResponse = new ApiResponse<object>
             {
                 Response = response,
-                Messages = new List<string>()
+                Notifications = new List<string>()
             };
 
             if (_notifier.HasNotification(NotificationType.WARNING))
-                apiResponse.Messages = _notifier.GetMessages(NotificationType.WARNING);
+                apiResponse.Notifications = _notifier.GetMessages(NotificationType.WARNING);
 
             if (IsValidOperation())
             {
@@ -32,7 +32,7 @@ namespace MMM.Teste.CalculoJuros.Api.Controllers
             }
 
             apiResponse.Success = false;
-            apiResponse.Messages.AddRange(_notifier.GetMessages(NotificationType.ERROR));
+            apiResponse.Notifications.AddRange(_notifier.GetMessages(NotificationType.ERROR));
 
             return BadRequest(apiResponse);
         }

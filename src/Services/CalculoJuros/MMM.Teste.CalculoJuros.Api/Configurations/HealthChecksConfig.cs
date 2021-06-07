@@ -10,15 +10,16 @@ namespace MMM.Teste.CalculoJuros.Api.Configurations
 {
     public static class HealthChecksConfig
     {
-        public static IServiceCollection AddHealthChecksConfig(this IServiceCollection services, IConfiguration settings)
+        public static IServiceCollection AddHealthChecksConfig(this IServiceCollection services, IConfiguration configuration)
         {
             // para mapemanto das urls no container:
-            string api01Url = settings.GetValue<string>("UrlTaxaJurosApi");
-            string api02Url = settings.GetValue<string>("UrlCalculoJurosApi");
+            string api01Url = configuration.GetValue<string>("UrlTaxaJurosApi");
+            string api02Url = configuration.GetValue<string>("UrlCalculoJurosApi");
 
             services.AddHealthChecks()
                 .AddCheck("Api-02_CalculoJuros", () => HealthCheckResult.Healthy("Api OK!"), tags: new[] { "API" })
-                .AddUrlGroup(new Uri(api01Url), "Api-01_TaxaJuros", tags: new[] { "API" });
+                .AddUrlGroup(new Uri(api01Url), "Api-01_TaxaJuros", tags: new[] { "API" })
+                .AddSqlServer(configuration.GetConnectionString("IdentitySqlServer"), null, "SQL-Server_IDENTITY", tags: new[] { "DB" });
 
             services.AddHealthChecksUI(opt =>
             {

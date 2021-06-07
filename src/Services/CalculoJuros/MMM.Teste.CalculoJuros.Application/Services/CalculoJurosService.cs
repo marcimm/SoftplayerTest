@@ -28,8 +28,9 @@ namespace MMM.Teste.CalculoJuros.Application.Services
 
             JurosCompostosViewModel result = _mapper.Map<JurosCompostosViewModel>(juros);
 
-            return result;
+            _notifier.Handle(new Notification("exemplo: Juros compostos calculados", NotificationType.WARNING));
 
+            return result;
         }
     }
 }
