@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MMM.Test.TaxaJuros.Api</name>
+    </assembly>
+    <members>
+        <member name="M:MMM.Test.TaxaJuros.Controllers.TaxaJurosController.GetTaxaJuros">
+            <summary>
+            Retorna taxa de juros atual
+            </summary>
+        </member>
+    </members>
+</doc>

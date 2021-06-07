@@ -1,0 +1,8 @@
+
+Identity Migrations:
+(localdb)\MSSQLLocalDB
+Add-Migration Initial
+Update-Database
+
+
+ 

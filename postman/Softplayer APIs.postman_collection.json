@@ -1,0 +1,405 @@
+{
+	"info": {
+		"_postman_id": "e70d521a-0afa-49a3-a680-a73f99838277",
+		"name": "Softplayer APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Localhost",
+			"item": [
+				{
+					"name": "Api-01 - taxaJuros",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5101/taxaJuros",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5101",
+							"path": [
+								"taxaJuros"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Api-02 - calculaJuros",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5201/v1/calculajuros?valorInicial=100&tempoMeses=12",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5201",
+							"path": [
+								"v1",
+								"calculajuros"
+							],
+							"query": [
+								{
+									"key": "valorInicial",
+									"value": "100"
+								},
+								{
+									"key": "tempoMeses",
+									"value": "12"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Api-Identity - Gerar Token JWT adm",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonResponse = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"token\", jsonResponse.accessToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"adm@adm.com\",\r\n  \"senha\": \"Adm@12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/token",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Api-Identity - Gerar Token JWT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonResponse = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"token\", jsonResponse.accessToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"marcio@marcio.com\",\r\n  \"senha\": \"Marcio@1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/token",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Api-Identity - Nova Conta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Marcio\",\r\n  \"cpf\": \"12345678901\",\r\n  \"email\": \"marcio@marcio.com\",\r\n  \"senha\": \"Marcio@1\",\r\n  \"senhaConfirmacao\": \"Marcio@1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/nova-conta",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"nova-conta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Api-02 - calculaJuros V2 com auth",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5201/v2/calculajuros?valorInicial=100&tempoMeses=12",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5201",
+							"path": [
+								"v2",
+								"calculajuros"
+							],
+							"query": [
+								{
+									"key": "valorInicial",
+									"value": "100"
+								},
+								{
+									"key": "tempoMeses",
+									"value": "12"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Docker",
+			"item": [
+				{
+					"name": "Api-01 - taxaJuros",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5101/taxaJuros",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5101",
+							"path": [
+								"taxaJuros"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Api-02 - calculaJuros",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5201/v1/calculajuros?valorInicial=100&tempoMeses=12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5201",
+							"path": [
+								"v1",
+								"calculajuros"
+							],
+							"query": [
+								{
+									"key": "valorInicial",
+									"value": "100"
+								},
+								{
+									"key": "tempoMeses",
+									"value": "12"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Api-Identity - Gerar Token JWT adm",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonResponse = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"token\", jsonResponse.accessToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"adm@adm.com\",\r\n  \"senha\": \"Adm@12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Api-Identity - Gerar Token JWT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonResponse = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"token\", jsonResponse.accessToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"marcio@marcio.com\",\r\n  \"senha\": \"Marcio@1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Api-Identity - Nova Conta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Marcio\",\r\n  \"cpf\": \"12345678901\",\r\n  \"email\": \"marcio@marcio.com\",\r\n  \"senha\": \"Marcio@1\",\r\n  \"senhaConfirmacao\": \"Marcio@1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/nova-conta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"nova-conta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Api-02 - calculaJuros V2 com auth",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5201/v2/calculajuros?valorInicial=100&tempoMeses=12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5201",
+							"path": [
+								"v2",
+								"calculajuros"
+							],
+							"query": [
+								{
+									"key": "valorInicial",
+									"value": "100"
+								},
+								{
+									"key": "tempoMeses",
+									"value": "12"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

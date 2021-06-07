@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MMM.Teste.CalculoJuros.Api</name>
+    </assembly>
+    <members>
+        <member name="M:MMM.Test.Juros.Controllers.V2.JurosController.GetTaxaJuros(System.Decimal,System.Int32)">
+            <summary>
+            Calcula juros compostos
+            </summary>
+            
+        </member>
+    </members>
+</doc>
