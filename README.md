@@ -31,10 +31,10 @@ Utilização de SOLID e Clean Code além de inúmeras tecnologias e recursos pro
 
 **Resumo:** 
 
-**api-01-taxa-juros**: api com um único endpoint que retorna a taxa de juros;
-**api-02-calculo-juros**: api com um endpoint para calculo de juros (consultando a taxa de - juros da api-01) e outro endpoint que retorna a Url GitHub do projeto;
-**api-identity**: Api para gerenciamento de usuários e acessos com o Microsoft Identity. Faz cadastro de usuários e fornece o token de acesso para as demais Apis;
-**sql-server**: banco de dados com Microsoft SQL Server para utilização do Identity;
+- **api-01-taxa-juros**: api com um único endpoint que retorna a taxa de juros;
+- **api-02-calculo-juros**: api com um endpoint para calculo de juros (consultando a taxa de - juros da api-01) e outro endpoint que retorna a Url GitHub do projeto;
+- **api-identity**: Api para gerenciamento de usuários e acessos com o Microsoft Identity. Faz cadastro de usuários e fornece o token de acesso para as demais Apis;
+- **sql-server**: banco de dados com Microsoft SQL Server para utilização do Identity;
 
 
 ## Instalação no Docker Desktop
