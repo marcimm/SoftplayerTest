@@ -25,12 +25,16 @@ Utilização de SOLID e Clean Code além de inúmeras tecnologias e recursos pro
 * Docker Compose (Criação das imagens, containers, importação do Banco de dados)
 * Projeto Postman para validação e testes
  
+**Diagrama:** 
+
+![Alt text](docs/im/drawIO_diagram.PNG?raw=true "Diagrama")
+
 **Resumo:** 
-![Alt text](docs/img/drawIO_diagram.PNG?raw=true "Diagrama")
-- **api-01-taxa-juros**: api com um único endpoint que retorna a taxa de juros;
-- **api-02-calculo-juros**: api com um endpoint para calculo de juros (consultando a taxa de - juros da api-01) e outro endpoint que retorna a Url GitHub do projeto;
-- **api-identity**: Api para gerenciamento de usuários e acessos com o Microsoft Identity. Faz cadastro de usuários e fornece o token de acesso para as demais Apis;
-- **sql-server**: banco de dados com Microsoft SQL Server para utilização do Identity;
+
+**api-01-taxa-juros**: api com um único endpoint que retorna a taxa de juros;
+**api-02-calculo-juros**: api com um endpoint para calculo de juros (consultando a taxa de - juros da api-01) e outro endpoint que retorna a Url GitHub do projeto;
+**api-identity**: Api para gerenciamento de usuários e acessos com o Microsoft Identity. Faz cadastro de usuários e fornece o token de acesso para as demais Apis;
+**sql-server**: banco de dados com Microsoft SQL Server para utilização do Identity;
 
 
 ## Instalação no Docker Desktop
@@ -39,12 +43,13 @@ Utilização de SOLID e Clean Code além de inúmeras tecnologias e recursos pro
 - Executar o comando "docker-compose up --build" 
 - Aguardar o provisionamento dos containers
 ```
+
 Todos os containers estão configurados com portas de acesso externo:
-http://localhost:5001/index.html - api-identity
-http://localhost:5101/index.html - api-01-taxa-juros
-http://localhost:5201/index.html - api-02-calculo-juros
-http://localhost:5201/healthchecks-ui#/healthchecks
-sql-server: **localhost, 1430** (usuário: "sa", senha: "My_PassW0rd")
+- http://localhost:5001/index.html - api-identity
+- http://localhost:5101/index.html - api-01-taxa-juros
+- http://localhost:5201/index.html - api-02-calculo-juros
+- http://localhost:5201/healthchecks-ui#/healthchecks
+- sql-server: **localhost, 1430** (usuário: "sa", senha: "My_PassW0rd")
 
 ### Database com usuário de ADM para testes:
 -- Ao subir o container sql-server, será criada automaticamente utilizando p arquivo: /sql/database-generator.sql
