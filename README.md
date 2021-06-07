@@ -11,7 +11,7 @@ Utilização de SOLID e Clean Code além de inúmeras tecnologias e recursos pro
 * Versionamento da API
 * Otimização da resposta da API com Gzip Compression
 * Health Checks com Xabaril UI
-* Autenticação com JWT
+* Autenticação com JWT (controller V2 com exemplo de segurança aplicando CLAIMS)
 * Api de gerenciamento de usuários e acessos com Identity e EF Core
 * Customização de autorização com CLAIMS
 * Serilog
